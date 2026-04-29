@@ -1,0 +1,9 @@
+lista de requisitos funcionais:
+o sistemas deve cadastrar produtos,
+cadastrar movimentação,
+
+alerta de estoque mínimos,
+filtrar de pesquisa.
+registrar históricos,
+visualizar histórico,
+logar usuario
