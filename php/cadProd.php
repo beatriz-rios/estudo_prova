@@ -27,26 +27,34 @@
     </form>
 
     <?php 
-    if($_SERVER["REQUEST_METHO"]"POST){
+    if($_SERVER["REQUEST_METHO"]=='POST'){
     $nome = $_POST['nome'];
     $marca = $_POST['marca'];
     $vol = $_POST['vol'];
     $cor = $_POST['cor'];
 
     $database = "lojaCosmi";
-    $password = "";
+    $password = " ";
     $servername = "localhost";
     $username = "root";
 
 $conn = mysqli_connect($database, $password, $servername, $username );
-if(!conn){
-echo"<div class= 'message-erro'>"falha de conecção" . mysqli_connect_error() . "</div>";
+if(!$conn){
+echo "<div class= 'message-erro'>falha de conexão" . mysqli_connect_error() . "</div>";
 die();
 }
-sql = INSERT INTO cosmetico(
+
+$sql = "INSERT INTO cosmetico(
+    nome,
+    marca,
+    volume,
+    cor
     )VALUES(
-    
-    );
+    '$nome',
+    '$marca',
+    '$vol',
+    '$cor'
+    )";
 
 
     
