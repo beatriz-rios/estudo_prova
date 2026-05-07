@@ -25,6 +25,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <h1>Bem-vindo, <?php echo $_SESSION['usuarioLogado']; ?>!</h1>
+
+    <ul>
+        <li><a href="http://localhost/estudo_prova/php/cadProd.php">Cadastro de Produto</a></li> 
+        <li><a href="http://localhost/estudo_prova/php/consultaTab.php">Consulta de Produto</a></li>
+        <li><a href="http://localhost/estudo_prova/php/cadMov.php">Cadastro de Movimento</a></li>
+        <li><a href="http://localhost/estudo_prova/php/menu.php">Menu</a></li>
+    </ul>
     <button onclick="sair()">Sair</button>
     <script src="../js/logout.js"></script>
 </body>

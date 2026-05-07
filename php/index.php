@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Login</title>
 </head>
 <body>
+    <h1>Página de Login</h1>
     <form method="post">
 
     <label >Usuário:</label>
@@ -37,6 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 
     
-    <script src="../js/login.js"></script>
+   
 </body>
 </html>
