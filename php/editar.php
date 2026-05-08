@@ -1,31 +1,38 @@
-<?php
-    $conn = mysqli_connect("localhost", "root", "", "saep_db");
+        <?php
+    $servername = "127.0.0.1:3308";// geralmente é localhost, mas se estiver usando uma porta diferente, especifique-a
+        $username = "root"; // nome de usuário do banco de dados
+        $password = "";
+        $database = "lojacosme"; // nome do banco de dados
 
-    // 2. PEGA O ID DA URL (ex: editarProduto.php?id=5)
-    $id = $_GET['id'];
+        // ORDEM CORRETA: host, usuário, senha, banco
+        $conn = mysqli_connect($servername, $username, $password, $database);
 
-    // 3. BUSCA OS DADOS DO PRODUTO NO BANCO
-    $sql = "UPDATE * FROM cosmetico WHERE idproduto = '$id'";
-    $resultado = mysqli_query($conn, $sql);
-    ?><!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+        // 2. BUSCA (Para mostrar o nome atual no campo)
+        $id = $_GET['id'];
+        $sql = "SELECT * FROM cosmetico WHERE idproduto = $id";
+        $res = mysqli_query($conn, $sql);
+        $produto = mysqli_fetch_assoc($res);
 
- <h1>Editar Produto: <?php echo $produto['nome']; ?></h1>
+        // 3. ATUALIZAÇÃO (Só acontece quando clica no botão)
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $novoNome = $_POST['nome'];
+            $update = "UPDATE cosmetico SET nome = '$novoNome' WHERE idproduto = $id";
+            
+            if (mysqli_query($conn, $update)) {
+                header("Location: consultaTab.php");
+                exit();
+            }
+        }
+        ?>
 
-    <form method="POST">
-        <label>Nome do Produto:</label>
-        <input type="text" name="nome" value="<?php echo $produto['nome']; ?>" required>
-        
-        <br><br>
-        <button type="submit">Salvar Alterações</button>
-        <a href="consultaTabela.php">Cancelar</a>
-</form>
-    
-</body>
-</html>
+        <!DOCTYPE html>
+        <html>
+        <body>
+            <h2>Editar: <?php echo $produto['nome']; ?></h2>
+            
+            <form method="POST">
+                <input type="text" name="nome" value="<?php echo $produto['nome']; ?>">
+                <button type="submit">Salvar</button>
+            </form>
+        </body>
+        </html>

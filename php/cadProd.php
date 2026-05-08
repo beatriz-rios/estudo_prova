@@ -35,9 +35,7 @@
 
 
     </form>
-    <ul>
-        <li><a href="http://localhost/estudo_prova/php/menu.php">Menu</a></li>
-    </ul>
+   
 
     <?php
     if ($_SERVER["REQUEST_METHOD"] == 'POST') {
@@ -47,10 +45,10 @@
         $cor = $_POST['cor'];
 
     // Configurações corrigidas
-    $servername = "localhost";
-    $username = "root";
-    $password = ""; // Removi o espaço, deve ser vazio
-    $database = "lojacosme"; // Verifique se é lojaCosmi ou lojacosme (o MySQL costuma ser case-insensitive, mas é bom padronizar)
+    $servername = "127.0.0.1:3308";// geralmente é localhost, mas se estiver usando uma porta diferente, especifique-a
+    $username = "root"; // nome de usuário do banco de dados
+    $password = "";
+    $database = "lojacosme"; // nome do banco de dados
 
     // ORDEM CORRETA: host, usuário, senha, banco
     $conn = mysqli_connect($servername, $username, $password, $database);
