@@ -1,7 +1,7 @@
 <?php
 
 // Configurações corrigidas
-    $servername = "127.0.0.1:3308";// geralmente é localhost, mas se estiver usando uma porta diferente, especifique-a
+    $servername = "localhost";// geralmente é localhost/ 127.0.01:3308(no pc do senai)  mas se estiver usando uma porta diferente, especifique-a
     $username = "root";// nome de usuário do banco de dados
     $password = "";
     $database = "lojacosme"; // nome do banco de dados

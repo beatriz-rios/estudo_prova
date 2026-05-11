@@ -1,38 +1,25 @@
-        <?php
-    $servername = "127.0.0.1:3308";// geralmente é localhost, mas se estiver usando uma porta diferente, especifique-a
-        $username = "root"; // nome de usuário do banco de dados
-        $password = "";
-        $database = "lojacosme"; // nome do banco de dados
+<?php
+//Abre a porta de comunicação com o banco de dados (Host, User, Senha, Banco)
+$db = mysqli_connect("localhost", "root", "", "lojacosme");
 
-        // ORDEM CORRETA: host, usuário, senha, banco
-        $conn = mysqli_connect($servername, $username, $password, $database);
+$id = $_GET['id']; //Pega o ID que foi enviado pelo link da tabela (ex: editar.php?id=5)
 
-        // 2. BUSCA (Para mostrar o nome atual no campo)
-        $id = $_GET['id'];
-        $sql = "SELECT * FROM cosmetico WHERE idproduto = $id";
-        $res = mysqli_query($conn, $sql);
-        $produto = mysqli_fetch_assoc($res);
+$res = mysqli_query($db, "SELECT * FROM cosmetico WHERE idproduto = $id"); //Faz uma busca no banco para encontrar o produto que tem esse ID específico
 
-        // 3. ATUALIZAÇÃO (Só acontece quando clica no botão)
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $novoNome = $_POST['nome'];
-            $update = "UPDATE cosmetico SET nome = '$novoNome' WHERE idproduto = $id";
-            
-            if (mysqli_query($conn, $update)) {
-                header("Location: consultaTab.php");
-                exit();
-            }
-        }
-        ?>
+$prod = mysqli_fetch_assoc($res); //Converte o resultado do banco em uma lista (array) que o PHP consegue ler
 
-        <!DOCTYPE html>
-        <html>
-        <body>
-            <h2>Editar: <?php echo $produto['nome']; ?></h2>
-            
-            <form method="POST">
-                <input type="text" name="nome" value="<?php echo $produto['nome']; ?>">
-                <button type="submit">Salvar</button>
-            </form>
-        </body>
-        </html>
+if ($_POST) { //Verifica "Se o usuário clicou no botão de salvar" (se houve um envio de formulário)
+
+    $nome = $_POST['nome'];//Pega o novo nome que o usuário digitou na caixinha de texto
+
+    //Manda o banco de dados trocar (UPDATE) o nome antigo pelo novo onde o ID for igual
+    mysqli_query($db, "UPDATE cosmetico SET nome='$nome' WHERE idproduto=$id");
+
+    header("Location: consultaTab.php");//Redireciona o navegador de volta para a tabela de consulta
+}
+?>
+
+<form method="POST">
+    <input type="text" name="nome" value="<?= $prod['nome'] ?>">
+    <button>Salvar</button>
+</form>

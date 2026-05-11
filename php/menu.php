@@ -1,38 +1,29 @@
 <?php
-session_start(); // 1. Avisa o PHP que vamos usar a "memória"
+session_start(); //Ativa a memória para ler o que foi guardado
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $usuario = $_POST['usuario'];
-    $senha = $_POST['senha'];
-
-    if ($usuario == "Bia" && $senha == "123") {
-        // 2. Guarda o nome na "gaveta" do servidor chamada SESSION
-        $_SESSION['usuarioLogado'] = $usuario;
-        
-        header("Location: menu.php"); // Redireciona
-        exit();
-    } else {
-        echo "Usuário ou senha errados!";
-    }
+// Se a gaveta estiver vazia, expulsa o utilizador
+if (!isset($_SESSION['usuario'])) {
+    header("Location: index.php");
+    exit();
 }
-?> 
+?>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>menu</title>
+    <title>Document</title>
 </head>
 <body>
-    <h1>Bem-vindo, <?php echo $_SESSION['usuarioLogado']; ?>!</h1>
+        <h1>Bem-vindo, <?php echo $_SESSION['usuario']; ?>!</h1>
 
-    <ul>
+  <ul>
         <li><a href="http://localhost/estudo_prova/php/cadProd.php">Cadastro de Produto</a></li> 
         <li><a href="http://localhost/estudo_prova/php/consultaTab.php">Consulta de Produto</a></li>
         <li><a href="http://localhost/estudo_prova/php/cadMov.php">Cadastro de Movimento</a></li>
         <li><a href="http://localhost/estudo_prova/php/menu.php">Menu</a></li>
     </ul>
-    <button onclick="sair()">Sair</button>
-    <script src="../js/logout.js"></script>
+     <button id="btn-logout" onclick="sair()">Sair</button>
+      <script src="../js/logout.js"></script>
 </body>
 </html>

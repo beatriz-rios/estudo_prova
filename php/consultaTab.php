@@ -27,7 +27,7 @@
         GROUP BY c.idproduto, c.nome";
 
 
-    $servername = "127.0.0.1:3308"; // geralmente é localhost, mas se estiver usando uma porta diferente, especifique-a
+    $servername = "localhost";// geralmente é localhost/ 127.0.01:3308(no pc do senai)  mas se estiver usando uma porta diferente, especifique-a
     $username = "root"; // nome de usuário do banco de dados
     $password = "";
     $database = "lojacosme"; // nome do banco de dados
@@ -46,8 +46,8 @@
             echo "<td>" . $row["idproduto"] . "</td>";
             echo "<td>" . $row["nome"] . "</td>";
             echo "<td>" . $row["estoque_total"] . "</td>";
-            echo "<td> <a href='http://localhost/estudo_prova/php/editar.php'>Editar</a> |
-         <a href='#'>Excluir</a> </td>";
+            echo "<td> <a href='editar.php?id=" . $row["idproduto"] . "'>Editar</a> |
+             <a href='excluir.php?id=" . $row["idproduto"] . "'>Excluir</a> </td>";
             echo "</tr>";
         }
     } else {
