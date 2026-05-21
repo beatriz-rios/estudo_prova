@@ -1,13 +1,13 @@
 <?php
-$db = mysqli_connect("localhost", "root", "", "lojacosme"); // 1 CONEXÃO
+$db = mysqli_connect("localhost", "root", "", "lojacosme"); //  CONEXÃO
 
-$id = $_GET['id']; // 2 PEGA O ID DO PRODUTO
+$id = $_GET['id']; //  PEGA O ID DO PRODUTO
 
-mysqli_query($db, "DELETE FROM movimento WHERE cosmetico_idproduto = $id"); // 3 PRIMEIRO: Deleta as movimentações (a chave estrangeira)
+mysqli_query($db, "DELETE FROM movimento WHERE cosmetico_idproduto = $id"); //  PRIMEIRO: Deleta as movimentações (a chave estrangeira)
 
-mysqli_query($db, "DELETE FROM cosmetico WHERE idproduto = $id"); // 4 SEGUNDO: Deleta o produto
+mysqli_query($db, "DELETE FROM cosmetico WHERE idproduto = $id"); //  SEGUNDO: Deleta o produto
 
-header("Location: consultaTab.php"); // 5 VOLTA PARA A TABELA
+header("Location: consultaTab.php"); //  VOLTA PARA A TABELA
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

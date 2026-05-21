@@ -1,13 +1,13 @@
 <?php
-session_start(); // 1. Ativa a memória do servidor
+session_start(); //  Ativa a memória do servidor
 
 if ($_POST) {
     $u = $_POST['u'];
     $s = $_POST['s'];
 
     if ($u == "Admin" && $s == "123") {
-        $_SESSION['usuario'] = $u; // 2. Guarda o nome na gaveta
-        header("Location: menu.php"); // 3. Vai para o menu
+        $_SESSION['usuario'] = $u; // Guarda o nome na gaveta
+        header("Location: menu.php"); //  Vai para o menu
     } else {
         echo "Erro!";
     }
