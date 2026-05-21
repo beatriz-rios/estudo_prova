@@ -37,7 +37,10 @@
         $quant = $_POST["quant"];
 
 
-
+        // Se a palavra digitada for saida ou saída, multiplica por -1 para ficar negativo
+        if ($mov == "saida" || $mov == "saída") {
+            $quant = $quant * -1;
+        }
 
         $servername = "localhost"; // geralmente é localhost/ 127.0.01:3308(no pc do senai)  mas se estiver usando uma porta diferente, especifique-a
         $username = "root"; // nome de usuário do banco de dados
