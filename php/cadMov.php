@@ -37,7 +37,8 @@
         $quant = $_POST["quant"];
 
 
-        // Se a palavra digitada for saida ou saída, multiplica por -1 para ficar negativo
+        // Se a palavra digitada for saida ou saída, multiplica por -1 para ficar negativo, assim no banco fica -(quantas unidades foi retiradas de determinado produto), 
+        //e na tabela de consulta acontece a subtração
         if ($mov == "saida" || $mov == "saída") {
             $quant = $quant * -1;
         }
