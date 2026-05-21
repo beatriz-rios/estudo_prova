@@ -1,43 +1,31 @@
 <?php
-session_start(); // 1. Avisa o PHP que vamos usar a "memória"
+session_start(); // 1. Ativa a memória do servidor
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $usuario = $_POST['usuario'];
-    $senha = $_POST['senha'];
+if ($_POST) {
+    $u = $_POST['u'];
+    $s = $_POST['s'];
 
-    if ($usuario == "Bia" && $senha == "123") {
-        // 2. Guarda o nome na "gaveta" do servidor chamada SESSION
-        $_SESSION['usuarioLogado'] = $usuario;
-        
-        header("Location: menu.php"); // Redireciona
-        exit();
+    if ($u == "Admin" && $s == "123") {
+        $_SESSION['usuario'] = $u; // 2. Guarda o nome na gaveta
+        header("Location: menu.php"); // 3. Vai para o menu
     } else {
-        echo "Usuário ou senha errados!";
+        echo "Erro!";
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Document</title>
 </head>
 <body>
+    <form method="POST">
     <h1>Página de Login</h1>
-    <form method="post">
-
-    <label >Usuário:</label>
-    <input type="text" name="usuario" required>
-
-    <label for="senha">Senha:</label>
-    <input type="password" name="senha" required>
-
-    <input type="submit" value="Login">
-    </form>
-
-    
-   
+    <input name="u" placeholder="Usuário" required>
+    <input name="s" type="password" placeholder="Senha" required>
+    <button>Entrar</button>
+</form>
 </body>
 </html>

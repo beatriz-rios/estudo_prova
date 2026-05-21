@@ -17,7 +17,7 @@
     </ul>
 
     <?php
-   $sql = "SELECT 
+    $sql = "SELECT 
             c.idproduto, 
             c.nome, 
             SUM(m.quant) as estoque_total
@@ -26,7 +26,13 @@
         WHERE c.idproduto
         GROUP BY c.idproduto, c.nome";
 
-    $conn = mysqli_connect("localhost", "root", "", "lojacosme");
+
+    $servername = "localhost";// geralmente é localhost/ 127.0.01:3308(no pc do senai)  mas se estiver usando uma porta diferente, especifique-a
+    $username = "root"; // nome de usuário do banco de dados
+    $password = "";
+    $database = "lojacosme"; // nome do banco de dados
+    
+    $conn = mysqli_connect($servername, $username, $password, $database);
 
 
     echo "<table border='2'>";
@@ -34,19 +40,19 @@
 
     $resultado = mysqli_query($conn, $sql);
 
-   if ($resultado) {
-    while ($row = mysqli_fetch_assoc($resultado)) {
-        echo "<tr>";
-        echo "<td>" . $row["idproduto"] . "</td>";
-        echo "<td>" . $row["nome"] . "</td>";
-        echo "<td>" . $row["estoque_total"] . "</td>";
-        echo "<td> <a href='http://localhost/estudo_prova/php/editar.php'>Editar</a> |
-         <a href='#'>Excluir</a> </td>";
-        echo "</tr>";
+    if ($resultado) {
+        while ($row = mysqli_fetch_assoc($resultado)) {
+            echo "<tr>";
+            echo "<td>" . $row["idproduto"] . "</td>";
+            echo "<td>" . $row["nome"] . "</td>";
+            echo "<td>" . $row["estoque_total"] . "</td>";
+            echo "<td> <a href='editar.php?id=" . $row["idproduto"] . "'>Editar</a> |
+             <a href='excluir.php?id=" . $row["idproduto"] . "'>Excluir</a> </td>";
+            echo "</tr>";
+        }
+    } else {
+        echo "<tr><td colspan='4'>Erro na consulta: " . mysqli_error($conn) . "</td></tr>";
     }
-} else {
-    echo "<tr><td colspan='4'>Erro na consulta: " . mysqli_error($conn) . "</td></tr>";
-}
     echo "</table>";
 
     ?>

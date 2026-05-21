@@ -1,20 +1,14 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = ""; // Removi o espaço, deve ser vazio
-    $database = "lojacosme"; // Verifique se é lojaCosmi ou lojacosme (o MySQL costuma ser case-insensitive, mas é bom padronizar)
+$db = mysqli_connect("localhost", "root", "", "lojacosme"); // 1 CONEXÃO
 
-    // ORDEM CORRETA: host, usuário, senha, banco
-    $conn = mysqli_connect($servername, $username, $password, $database);
-    $conn = mysqli_connect("localhost", "root", "", "saep_db");
+$id = $_GET['id']; // 2 PEGA O ID DO PRODUTO
 
-    // 2. PEGA O ID DA URL (ex: editarProduto.php?id=5)
-    $id = $_GET['id'];
+mysqli_query($db, "DELETE FROM movimento WHERE cosmetico_idproduto = $id"); // 3 PRIMEIRO: Deleta as movimentações (a chave estrangeira)
 
-    // 3. BUSCA OS DADOS DO PRODUTO NO BANCO
-    $sql = "DELETE * FROM produtos WHERE idprodutos = '$id'";
-    $resultado = mysqli_query($conn, $sql);
-    ?>
+mysqli_query($db, "DELETE FROM cosmetico WHERE idproduto = $id"); // 4 SEGUNDO: Deleta o produto
+
+header("Location: consultaTab.php"); // 5 VOLTA PARA A TABELA
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -26,7 +20,7 @@
 
 <body>
     <h1>Exclusão</h1>
-    
+
 </body>
 
 </html>

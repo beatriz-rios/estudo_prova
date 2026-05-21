@@ -10,7 +10,7 @@
 <body>
     <h1>Cadastro de Movimento</h1>
     <ul>
-        <li><a href="http://localhost/estudo_prova/php/cadProd.php">Cadastro de Produto</a></li> 
+        <li><a href="http://localhost/estudo_prova/php/cadProd.php">Cadastro de Produto</a></li>
         <li><a href="http://localhost/estudo_prova/php/consultaTab.php">Consulta de Produto</a></li>
         <li><a href="http://localhost/estudo_prova/php/cadMov.php">Cadastro de Movimento</a></li>
         <li><a href="http://localhost/estudo_prova/php/menu.php">Menu</a></li>
@@ -37,15 +37,15 @@
         $quant = $_POST["quant"];
 
 
-        
-       // Configurações corrigidas
-    $servername = "localhost";
-    $username = "root";
-    $password = ""; // Removi o espaço, deve ser vazio
-    $database = "lojacosme"; // Verifique se é lojaCosmi ou lojacosme (o MySQL costuma ser case-insensitive, mas é bom padronizar)
 
-    // ORDEM CORRETA: host, usuário, senha, banco
-    $conn = mysqli_connect($servername, $username, $password, $database);
+
+        $servername = "localhost"; // geralmente é localhost/ 127.0.01:3308(no pc do senai)  mas se estiver usando uma porta diferente, especifique-a
+        $username = "root"; // nome de usuário do banco de dados
+        $password = "";
+        $database = "lojacosme";  // nome do banco de dados
+
+        // ORDEM CORRETA: host, usuário, senha, banco
+        $conn = mysqli_connect($servername, $username, $password, $database);
         if (!$conn) {
             echo "<div class=message_error> Falha na conexão:" . mysqli_connect_error() . "</div>";
             die();
