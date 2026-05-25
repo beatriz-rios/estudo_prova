@@ -1,11 +1,11 @@
 -- Schema lojacosme
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `lojacosme`;
-USE `lojacosme`;
+CREATE SCHEMA IF NOT EXISTS lojacosme;
+USE lojacosme;
 -- -----------------------------------------------------
 -- Table `lojacosme`.`cosmetico`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lojacosme`.`cosmetico` (
+CREATE TABLE IF NOT EXISTS cosmetico (
     `idproduto` INT(11) NOT NULL AUTO_INCREMENT,
     `nome` VARCHAR(200) NULL DEFAULT NULL,
     `marca` VARCHAR(200) NULL DEFAULT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `lojacosme`.`cosmetico` (
 -- -----------------------------------------------------
 -- Table `lojacosme`.`movimento`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lojacosme`.`movimento` (
+CREATE TABLE IF NOT EXISTS movimento(
     `idmovimento` INT(11) NOT NULL AUTO_INCREMENT,
     `mov` VARCHAR(100) NULL DEFAULT NULL,
     `cosmetico_idproduto` INT(11) NOT NULL,

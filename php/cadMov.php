@@ -26,6 +26,8 @@
         <label for="quant">Quantidade:</label>
         <input type="number" name="quant">
 
+
+
         <input type="submit" value="Cadastrar">
 
     </form>
@@ -35,7 +37,7 @@
         $mov = $_POST["mov"];
         $idcosm = $_POST["idcosme"];
         $quant = $_POST["quant"];
-
+       
 
         // Se a palavra digitada for saida ou saída, multiplica por -1 para ficar negativo, assim no banco fica -(quantas unidades foi retiradas de determinado produto), 
         //e na tabela de consulta acontece a subtração
@@ -63,7 +65,7 @@
     '$mov',
     '$idcosm',
     '$quant'
-    )";
+     )";
 
         if (mysqli_query($conn, $sql)) {
             echo "<div class=message_sucess> Movimento cadstrado com sucesso:</div>";

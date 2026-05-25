@@ -3,7 +3,7 @@ session_start(); //  Ativa a memória do servidor
 
 if ($_POST) {
     $u = $_POST['u'];
-    $s = $_POST['s'];
+    $s = $_POST['sn'];
 
     if ($u == "Admin" && $s == "123") {
         $_SESSION['usuario'] = $u; // Guarda o nome na gaveta
