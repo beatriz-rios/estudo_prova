@@ -18,20 +18,22 @@
 
     <?php
     $sql = "SELECT 
-            c.idproduto, 
-            c.nome, 
-            SUM(m.quant) as estoque_total
-        FROM cosmetico c
-        INNER JOIN movimento m ON c.idproduto = m.cosmetico_idproduto
-        WHERE c.idproduto
-        GROUP BY c.idproduto, c.nome";
+    c.idproduto,                   -- Busca o campo ID do produto na tabela de cosméticos
+    c.nome,                        -- Busca o campo nome do produto na tabela de cosméticos
+    SUM(m.quant) as estoque_total  -- Soma as quantidades da tabela movimento e dá o nome de 'estoque_total'
+    FROM cosmetico c                   -- Define que a tabela inicial da busca é 'cosmetico' (apelidada de 'c')
+     INNER JOIN movimento m             -- Junta (cruza) os dados com a tabela 'movimento' (apelidada de 'm')
+    ON c.idproduto = m.cosmetico_idproduto -- Regra de junção: o ID do cosmético deve ser igual ao ID guardado na movimentação
+    WHERE c.idproduto                  -- Filtro (Nota: geralmente usado para filtrar um ID, ex: WHERE c.idproduto = 5)
+    GROUP BY 
+    c.idproduto, c.nome;";
 
 
-    $servername = "localhost";// geralmente é localhost/ 127.0.01:3308(no pc do senai)  mas se estiver usando uma porta diferente, especifique-a
+    $servername = "localhost"; // geralmente é localhost/ 127.0.01:3308(no pc do senai)  mas se estiver usando uma porta diferente, especifique-a
     $username = "root"; // nome de usuário do banco de dados
     $password = "";
     $database = "lojacosme"; // nome do banco de dados
-    
+
     $conn = mysqli_connect($servername, $username, $password, $database);
 
 

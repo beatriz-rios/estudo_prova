@@ -3,9 +3,9 @@ session_start(); //  Ativa a memória do servidor
 
 if ($_POST) {
     $u = $_POST['u'];
-    $s = $_POST['sn'];
+    $s = $_POST['s'];
 
-    if ($u == "Admin" && $s == "123") {
+    if ($u == "Admin" || $u == "Bia" || $u == "kaua" && $s == "123") {
         $_SESSION['usuario'] = $u; // Guarda o nome na gaveta
         header("Location: menu.php"); //  Vai para o menu
     } else {
