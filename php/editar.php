@@ -11,9 +11,9 @@ $prod = mysqli_fetch_assoc($res); //Converte o resultado do banco em uma lista (
 if ($_POST) { //Verifica "Se o usuário clicou no botão de salvar" (se houve um envio de formulário)
 
     $nome = $_POST['nome']; //Pega o novo nome que o usuário digitou na caixinha de texto
-
+    $marca = $_POST['marca'];
     //Manda o banco de dados trocar (UPDATE) o nome antigo pelo novo onde o ID for igual
-    mysqli_query($db, "UPDATE cosmetico SET nome='$nome' WHERE idproduto=$id");
+    mysqli_query($db, "UPDATE cosmetico SET nome='$nome', marca='$marca' WHERE idproduto=$id");
 
     header("Location: consultaTab.php"); //Redireciona o navegador de volta para a tabela de consulta
 }
@@ -28,6 +28,9 @@ if ($_POST) { //Verifica "Se o usuário clicou no botão de salvar" (se houve um
 <body>
     <form method="POST">
     <input type="text" name="nome" value="<?= $prod['nome'] ?>">
+    <input type="text" name="marca" value="<?= $prod['marca'] ?>">
+
+
     <button>Salvar</button>
 </form>
 </body>
